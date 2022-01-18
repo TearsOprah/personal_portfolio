@@ -1,12 +1,47 @@
-<h1>Моё портфолио</h1>
+{% extends 'portfolio/base.html' %}
 
-{% for project in projects %}
+{% block content %}
 
-<h2>{{ project.title }}</h2>
-<p>{{ project.description }}</p>
-<img src="{{ project.image.url }}">
-{% if project.url %}
-<br><a href="{{ project.url }}">Link</a>
-{% endif %}
+{% load static %}
 
-{% endfor %}
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+    <h1 id="hometext" class="font-weight-bold">Этот сайт - мой второй учебный проект на Django на пути становления разработчиком</h1>
+  </div>
+</div>
+
+<div class="row justify-content-center my-3">
+  <div class="col-md-9 text-center">
+    <img src="{% static 'portfolio/ZEPETO_-8585691018672160088.png' %}">
+  </div>
+</div>
+
+<h2 class="mt-5">Мои Видео</h2>
+
+<hr>
+
+<div class="row">
+    {% for project in projects %}
+    <div class="col-lg-4 col-md-6">
+
+    {% if project.url %}
+    <a href="{{ project.url }}" target="_blank">
+        <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    </a>
+
+    {% else %}
+
+    <img src="{{ project.image.url }}" class="img-fluid mb-2">
+
+    {% endif %}
+
+    <h2>{{ project.title }}</h2>
+    <p>{{ project.description }}</p>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
